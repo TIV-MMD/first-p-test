@@ -1,7 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
 @import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-html {
-  background-image: url(http://www.ultraimg.com/images/2UeGfhZ.jpg);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(9deg, rgba(23, 109, 143, 1) 13%, rgba(178, 232, 247, 1) 83%);
 }
 
 body {
@@ -22,7 +25,7 @@ body {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 10px 0 rgba(249, 17, 17, 0.4);
   -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }

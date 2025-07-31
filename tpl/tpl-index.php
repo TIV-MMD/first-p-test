@@ -1,9 +1,14 @@
+<?php
+
+// echo implode('-', $tasks) . '<br>';
+
+?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Task manager UI</title>
-  <link rel="stylesheet" href="./style.css">
+  <title><?= SITE_TTITLE ?></title>
+  <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 <body>
@@ -71,7 +76,7 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="assets/js/script.js"></script>
 
 </body>
 </html>

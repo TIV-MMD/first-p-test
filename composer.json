@@ -1,0 +1,21 @@
+{
+    "name": "mmd/16",
+    "description": "A simple Todo list Project (with Ajax,Php and mysql)",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mmd\\16\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mohammad khorrami",
+            "email": "mohammad.reza.khorrami123@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hekmatinasser/verta": "8.5"
+    }
+}
