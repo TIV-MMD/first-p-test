@@ -3,6 +3,12 @@
 // echo implode('-', $tasks) . '<br>';
 
 
+// بازنویسی تابع برای دریافت کاربر لاگین شده
+function getLogInedUser()
+{
+    return $_SESSION['login'] ?? null;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +25,10 @@
   <div class="page">
     <div class="pageHeader">
       <div class="title">Dashboard</div>
-      <div class="userPanel"><a href="<?= site_url("?logout=1") ?>"><i class="fa-solid fa-right-from-bracket"></i></a> <span class="username"><?= getLogInedUser()->name ?? 'Unknown' ?></span><img
+      <div class="userPanel"><a
+          href="<?= site_url("?logout=1") ?>"><i
+            class="fa-solid fa-right-from-bracket"></i></a> <span
+          class="username"><?= getLogInedUser()->name ?? 'Unknown' ?></span><img
           src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/73.jpg" width="40" height="40" /></div>
     </div>
     <div class="main">
@@ -34,7 +43,9 @@
           <ul class="folders-list">
             <li
               class="<?=(!isset($_GET['folder_id'])) ? 'active' : '' ?>">
-              <a href="<?= site_url() ?>"> <i class="fa fa-folder"></i>All</a> </li>
+              <a href="<?= site_url() ?>"> <i
+                  class="fa fa-folder"></i>All</a>
+            </li>
             <?php foreach ($folders as $folder):  ?>
             <li
               class="<?= (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder->id) ? 'active' : '' ?>">
@@ -71,11 +82,11 @@
             <!-- <div class="title">Today</div> -->
             <ul>
               <?php if (sizeof($tasks) > 0):?>
-              <?php foreach ($tasks as $task):  ?> 
+              <?php foreach ($tasks as $task):  ?>
               <li
                 class="<?= $task->is_done ? 'checked' : ''; ?>">
-                <i
-                  data-taskId="<?= $task->id ?>" class="isDone clickable <?=$task->is_done ? 'fa fa-check-square-o' : 'fa fa-square-o';?> "></i>
+                <i data-taskId="<?= $task->id ?>"
+                  class="isDone clickable <?=$task->is_done ? 'fa fa-check-square-o' : 'fa fa-square-o';?> "></i>
                 <span><?= $task->title ?></span>
                 <div class="info">
                   <span class="created-at">Created At
@@ -108,24 +119,27 @@
   <script>
     $(document).ready(function() {
 
-      $('.isDone').click(function(e){
-          var tid = $(this).attr('data-taskId');
-          $.ajax({
-            url : "process/ajaxHandler.php",
-            method : "post",
-            data : {action: "doneSwitch",taskId : tid},
-            success : function(response){
-                location.reload();
-                var res = JSON.parse(response);
-                if (res.status == 1) {
-                  location.reload();
-                } else {
-                  alert(res.message)
-                }
-
+      $('.isDone').click(function(e) {
+        var tid = $(this).attr('data-taskId');
+        $.ajax({
+          url: "process/ajaxHandler.php",
+          method: "post",
+          data: {
+            action: "doneSwitch",
+            taskId: tid
+          },
+          success: function(response) {
+            location.reload();
+            var res = JSON.parse(response);
+            if (res.status == 1) {
+              location.reload();
+            } else {
+              alert(res.message)
             }
-            
-          });
+
+          }
+
+        });
       });
 
 
@@ -156,15 +170,15 @@
         });
       });
 
-      $('#addTaskNameInput').on('keypress',function(e){
-        if(e.which==13){
+      $('#addTaskNameInput').on('keypress', function(e) {
+        if (e.which == 13) {
 
           $.ajax({
             url: "process/ajaxHandler.php",
             method: "post",
             data: {
               action: "addTask",
-              folderId : <?=$_GET['folder_id'] ?? 0 ?>,
+              folderId: <?=$_GET['folder_id'] ?? 0 ?> ,
               taskTitle: $('#addTaskNameInput').val()
             },
             success: function(response) {
@@ -180,9 +194,7 @@
           });
         }
       });
-      });
-
-    
+    });
   </script>
 </body>
 

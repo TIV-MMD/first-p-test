@@ -38,6 +38,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 // dd($_SESSION);
 
+// بازنویسی توابع برای حذف وابستگی به پایگاه داده
+$users = [
+    ["id" => 1, "name" => "admin", "email" => "admin@example.com", "password" => "1234"]
+];
+
+function register($params)
+{
+    global $users;
+    $newUser = [
+        "id" => count($users) + 1,
+        "name" => $params['name'],
+        "email" => $params['email'],
+        "password" => $params['password']
+    ];
+    $users[] = $newUser;
+    return true;
+}
+
+function login($email, $password)
+{
+    global $users;
+    foreach ($users as $user) {
+        if ($user['email'] === $email && $user['password'] === $password) {
+            $_SESSION['login'] = (object) $user;
+            return true;
+        }
+    }
+    return false;
+}
+
 #connect to db and get tasks
 $tasks = getTask();
 include "tpl/tpl-auth.php";

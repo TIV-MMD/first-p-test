@@ -13,33 +13,24 @@ defined('BASE_URL') or die("premision denied");
 /** Folder Functions */
 function deletFolder($folder_id)
 {
-    global $pdo;
-    $sql = '';
-    $stmt = $pdo->prepare("delete  from folders where id = $folder_id");
-    $stmt->execute();
-
-    return $stmt->rowCount();
+    global $folders;
+    $folders = array_filter($folders, function ($folder) use ($folder_id) {
+        return $folder['id'] != $folder_id;
+    });
+    return 1; // تعداد حذف شده‌ها
 }
 function deletTask($task_id)
 {
-    global $pdo;
-    $sql = '';
-    $stmt = $pdo->prepare("delete  from tasks where id = $task_id");
-    $stmt->execute();
-
-    return $stmt->rowCount();
+    global $tasks;
+    $tasks = array_filter($tasks, function ($task) use ($task_id) {
+        return $task['id'] != $task_id;
+    });
+    return 1; // تعداد حذف شده‌ها
 }
 function getFolders()
 {
-    global $pdo;
-    $current_user_id = getCurrntUserId();
-    if (is_null($current_user_id)) {
-        return []; // یا مدیریت مناسب برای کاربر غیر وارد شده
-    }
-    $stmt = $pdo->prepare("select * from folders where user_id = :user_id");
-    $stmt->execute([':user_id' => $current_user_id]);
-
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    global $folders;
+    return $folders;
 }
 function addFolders($folder_name)
 {

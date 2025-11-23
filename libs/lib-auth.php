@@ -7,13 +7,13 @@ function getCurrntUserId()
 }
 function getUserByEmail($email)
 {
-    global $pdo;
-    $sql = 'select * from users where email = :email';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([':email' => $email]);
-    $records = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-    return $records[0] ?? null;
+    global $users;
+    foreach ($users as $user) {
+        if ($user['email'] === $email) {
+            return (object) $user;
+        }
+    }
+    return null;
 
 
 }
