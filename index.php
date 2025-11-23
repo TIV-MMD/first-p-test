@@ -3,17 +3,17 @@
 include 'bootstrap/init.php';
 
 
-// if (isset($_GET['logout'])) {
-//     logout();
-// }
+if (isset($_GET['logout'])) {
+    logout();
+}
 
 
 
-// if (!isLoggedIn()) {
+if (!isLoggedIn()) {
 
-//     //redirect to aut form
-//     header("location:" . site_url('auth.php'));
-// }
+    //redirect to aut form
+    header("location:" . site_url('auth.php'));
+}
 
 if (isset($_GET['delet_folder']) && is_numeric($_GET['delet_folder'])) {
     $deletedCount = deletFolder($_GET['delet_folder']);
