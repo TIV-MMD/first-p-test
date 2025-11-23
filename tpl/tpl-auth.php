@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
   <title>Mtask Authentication</title>
   <link rel="stylesheet" href="<?= site_url('assets/css/auth.css')?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 </head>
 <body>
